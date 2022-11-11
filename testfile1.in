@@ -1,0 +1,16 @@
+post Art "Abby Owen" "Introduction to Art" "This is the first post of my art blog where I will discuss art" "art, culture" 2022_11_11_15_04_41_149493
+post Art "Annie Revers" "Van Goh" "This post is about Vincent Van Goh" "artist" 2022_11_12_15_05_46_149493
+post Sports "Dylan Bienstock" "Water Polo" "This post is about water polo" "sports" 2022_10_16_17_06_49_109403
+show Art
+show Sports
+comment Art Art.Introduction_to_Art "Bob Smith" "I am excited to read about art!" 2022_11_12_15_04_41_149493
+comment Art Art.2022_11_12_15_04_41_149493 "Jane Smith" "Nice comment Bob!" 2022_11_13_15_05_46_149493
+comment Art Sports.Water_Polo "Abby Owen" "This comment should not work as we are not commenting on the Sports blog" 2022_10_18_17_06_49_109403
+comment Sports Sports.Tennis "Annie Revers" "This comment should not work because this permalink does not exist" 2022_09_18_17_06_49_109403
+show Art
+show Sports
+delete Art Art.Van_Goh "Annie Revers" 2022_11_12_16_05_46_149493
+delete Art Art.2022_11_12_15_04_41_149493 "Sasha Rich" 2022_12_13_15_05_46_149493
+delete Art Art.Non_existent_permalink "Abby Owen" 2022_12_13_15_05_46_149493
+show Art
+show BadBlog

@@ -79,19 +79,24 @@ def print_comments(comments, clist, depth):
 
 
 def show(blogs, posts, comments, name):
-    post_permalinks = blogs.find({"blogName": name})
-    for post in post_permalinks:
-        for p in post["posts"]:
-            pipeline = [
-                {"$match": {"permalink": p}}, 
-                {"$project": {"_id":0}}
-            ]
-            
-            body = posts.aggregate(pipeline)
-            for res in body:
-                print_blog(res)
-                clist = res["comments"]
-                print_comments(comments, clist, 1)
+    
+    check_exists = blogs.find({"blogName": name}, {"limit": 1})
+    if len(list(check_exists)) != 0:
+        post_permalinks = blogs.find({"blogName": name})
+        for post in post_permalinks:
+            for p in post["posts"]:
+                pipeline = [
+                    {"$match": {"permalink": p}}, 
+                    {"$project": {"_id":0}}
+                ]
+                
+                body = posts.aggregate(pipeline)
+                for res in body:
+                    print_blog(res)
+                    clist = res["comments"]
+                    print_comments(comments, clist, 1)
+    else:
+        print("no blog with supplied name")
                 
                        
 def delete(posts, comments, permalink, username, timestamp):
@@ -107,7 +112,7 @@ def delete(posts, comments, permalink, username, timestamp):
         comments.update_one({f"permalink": permalink},{"$set":{"timestamp":timestamp,"commentBody":f"deleted by {username}"}})
         print("comments deleted")
     else:
-        print("error")
+        print("no post or comment with this permalink.")
 
 
 

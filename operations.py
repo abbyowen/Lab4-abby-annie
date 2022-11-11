@@ -43,7 +43,7 @@ def print_blog(blog):
     body =  blog["postBody"]
     tags = blog["tags"]
     if tags == "":
-        string = f"title: {title} \n userName: {user} \n timestamp: {timestamp} \n permalink: {permalink} \n body: {body}"
+        string = f"title: {title}\nuserName: {user}\ntimestamp: {timestamp}\npermalink: {permalink}\nbody: {body}"
     else:
         string = f"title: {title}\nuserName: {user}\ntags: {tags}\ntimestamp: {timestamp}\npermalink: {permalink}\nbody: {body}"
 

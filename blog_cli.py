@@ -30,7 +30,8 @@ def db_connect():
 
 ###### read_input ######
 def read_input(input, db, posts, blogs, comments):
-     # split input by space
+    # split input by space
+    # posts, blogs, comments are the collections
     words = split(input)
 
     if words[0] == "post" and (len(words) == 6 or len(words) == 7): 
@@ -57,6 +58,16 @@ def read_input(input, db, posts, blogs, comments):
         comment(posts, comments, name, link, user, body, time)
         print("commenting")
     elif words[0] == "delete":
+        # delete blogname permalink userName timestamp
+        blogname = words[1]
+        permalink = words[2]
+        username = words[3]
+        timestamp = words[4]
+        name_check = permalink.split('.')[0]
+        if name_check != blogname:
+            print("blog name and permalink do not match")
+            return
+        delete(posts, comments, permalink, username)
         print("deleting")
     elif words[0] == "show" and len(words) == 2:
         print("showing")

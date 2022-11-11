@@ -13,9 +13,7 @@ def post(posts, blogs, name, user, title, postBody, tags, time):
     r = {'permalink': permalink, 'user': user, 'title': title, 'postBody': postBody, 'tags': tags, 'timestamp': time, 'comments': []}
     posts.insert_one(r)
     blogs.update_one({"blogName": name}, {"$push": {"posts": permalink}})
-    check = posts.find({"permalink": permalink})
-    for x in check: 
-        print(x)
+
 
 def comment(posts, comments, name, permalink, user, commentBody, timestamp):
     comment_permalink  = name+'.'+re.sub('[^0-9a-zA-Z]+', '_', timestamp)
@@ -84,7 +82,6 @@ def show(blogs, posts, comments, name):
     post_permalinks = blogs.find({"blogName": name})
     for post in post_permalinks:
         for p in post["posts"]:
-            print(p)
             pipeline = [
                 {"$match": {"permalink": p}}, 
                 {"$project": {"_id":0}}
@@ -92,23 +89,22 @@ def show(blogs, posts, comments, name):
             
             body = posts.aggregate(pipeline)
             for res in body:
-                print(res)
                 print_blog(res)
                 clist = res["comments"]
                 print_comments(comments, clist, 1)
                 
                        
-def delete(posts, comments, permalink, username):
+def delete(posts, comments, permalink, username, timestamp):
     res = posts.find({"permalink":permalink}, {"limit": 1})
     res2 = comments.find({"permalink": permalink}, {"limit": 1})
 
     # test line: 
     if len(list(res)) != 0:
-        posts.update_one({"permalink": permalink},{"$set":{"timestamp":str(datetime.now()),"postBody":f"deleted by {username}"}})
+        posts.update_one({"permalink": permalink},{"$set":{"timestamp":timestamp,"postBody":f"deleted by {username}"}})
         print("post deleted")
     elif len(list(res2)) != 0:
         print("hello")
-        comments.update_one({f"permalink": permalink},{"$set":{"timestamp":str(datetime.now()),"commentBody":f"deleted by {username}"}})
+        comments.update_one({f"permalink": permalink},{"$set":{"timestamp":timestamp,"commentBody":f"deleted by {username}"}})
         print("comments deleted")
     else:
         print("error")

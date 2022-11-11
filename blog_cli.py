@@ -60,7 +60,7 @@ def read_input(input, db, posts, blogs, comments):
     elif words[0] == "delete" and (len(words) == 4 or len(words) == 5):
         # delete blogname permalink userName timestamp
         if len(words) == 4:
-            timestamp = datetime.now()
+            timestamp = str(datetime.now())
         elif len(words) == 5:
             timestamp = words[4]
         
@@ -71,7 +71,7 @@ def read_input(input, db, posts, blogs, comments):
         if name_check != blogname:
             print("blog name and permalink do not match")
             return
-        delete(posts, comments, permalink, username)
+        delete(posts, comments, permalink, username, timestamp)
         print("deleting")
     elif words[0] == "show" and len(words) == 2:
         print("showing")

@@ -18,7 +18,7 @@ def db_connect():
     parser.read("config.ini")
     username = parser.get('mongo','username')
     password = parser.get('mongo','password')
-    server = f"mongodb+srv://{username}:{password}@cluster0.ikskh8p.mongodb.net/test"
+    server = "mongodb+srv://{username}:{password}@cluster0.rbot07u.mongodb.net/test"
     client = MongoClient(server)
     db = client["cosc61-lab4"]
     posts = db["posts"]

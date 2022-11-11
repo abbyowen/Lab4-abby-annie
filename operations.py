@@ -11,7 +11,7 @@ def post(posts, blogs, name, user, title, postBody, tags, time):
         blog = {'blogName': name}
         blogs.insert_one(blog) 
         
-    r = {'title': title, 'permalink': permalink, 'user': user, 'title': title, 'postBody': postBody, 'tags': tags, 'time': time}
+    r = {'title': title, 'permalink': permalink, 'user': user, 'title': title, 'postBody': postBody, 'tags': tags, 'time': time, 'comments': []}
     posts.insert_one(r)
     check = posts.find({"permalink": permalink})
     for x in check: 

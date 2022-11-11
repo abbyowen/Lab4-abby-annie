@@ -4,6 +4,7 @@ from configparser import ConfigParser
 from shlex import split
 import sys
 from operations import *
+from datetime import datetime
 
 ###### on_startup ######
 # Displays message when the program is started
@@ -33,16 +34,28 @@ def read_input(input, db, posts, blogs, comments):
     # posts, blogs, comments are the collections
     words = split(input)
 
-    if words[0] == "post" and len(words) == 7: 
+    if words[0] == "post" and (len(words) == 6 or len(words) == 7): 
         name = words[1]
         user = words[2]
         title = words[3]
         body = words[4]
         tags = words[5]
-        time = words[6]
+        if len(words) == 6:
+            time = datetime.now()
+        elif len(words) == 6:
+            time = words[6]
         post(posts, blogs, name, user, title, body, tags, time)
         print("posting")
-    elif words[0] == "comment":
+    elif words[0] == "comment" and (len(words) == 5 or len(words) == 6):
+        name = words[1]
+        link = words[2]
+        user = words[3]
+        body = words[4]
+        if len(words) == 5:
+            time = str(datetime.now())
+        elif len(words) == 6:
+            time = words[5]
+        comment(posts, comments, name, link, user, body, time)
         print("commenting")
     elif words[0] == "delete":
         # delete blogname permalink userName timestamp
@@ -56,8 +69,12 @@ def read_input(input, db, posts, blogs, comments):
             return
         delete(posts, comments, permalink, username)
         print("deleting")
-    elif words[0] == "show":
+    elif words[0] == "show" and len(words) == 2:
         print("showing")
+        name = words[1]
+        print(f"in {name}:")
+        show(blogs, posts, comments, name)
+        
     else:
         print("unknown input or invalid number of arguments")
 

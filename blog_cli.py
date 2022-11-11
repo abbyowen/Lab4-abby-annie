@@ -18,15 +18,17 @@ def db_connect():
     parser.read("config.ini")
     username = parser.get('mongo','username')
     password = parser.get('mongo','password')
-    server = "mongodb+srv://{username}:{password}@cluster0.rbot07u.mongodb.net/test"
+    server = f"mongodb+srv://{username}:{password}@cluster0.rbot07u.mongodb.net/test"
     client = MongoClient(server)
-    db = client["cosc61-lab4"]
+    db = client["lab4"]
     posts = db["posts"]
+    blogs = db["blogs"]
+    comments = db["comments"]
     print("connection established")
-    return db, posts
+    return db, posts, blogs, comments
 
 ###### read_input ######
-def read_input(input, db, collection):
+def read_input(input, db, posts, blogs, comments):
      # split input by space
     words = split(input)
 
@@ -37,7 +39,7 @@ def read_input(input, db, collection):
         body = words[4]
         tags = words[5]
         time = words[6]
-        post(collection, name, user, title, body, tags, time)
+        post(posts, blogs, name, user, title, body, tags, time)
         print("posting")
     elif words[0] == "comment":
         print("commenting")
@@ -54,13 +56,13 @@ def read_input(input, db, collection):
 def run():
     # Display start message
     on_startup()
-    db, collection = db_connect()
+    db, posts, blogs, comments = db_connect()
 
     for line in sys.stdin:
         if 'logout' == line.rstrip():
             break
         else:
-            read_input(line, db, collection)
+            read_input(line, db, posts, blogs, comments)
     
     
     print("goodbye!") 

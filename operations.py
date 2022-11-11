@@ -99,15 +99,16 @@ def show(blogs, posts, comments, name):
                 
                        
 def delete(posts, comments, permalink, username):
-    res = posts.find({"permalink":permalink})
-    res2 = comments.find({"permalink": permalink})
+    res = posts.find({"permalink":permalink}, {"limit": 1})
+    res2 = comments.find({"permalink": permalink}, {"limit": 1})
 
     # test line: 
-    if res:
-        posts.update_one({"permalink": permalink},{"$set":{"timestamp":datetime.now(),"postBody":"deleted by {username}"}})
+    if len(list(res)) != 0:
+        posts.update_one({"permalink": permalink},{"$set":{"timestamp":str(datetime.now()),"postBody":f"deleted by {username}"}})
         print("post deleted")
-    elif res2:
-        comments.update_one({"permalink": permalink},{"$set":{"timestamp":datetime.now(),"postBody":"deleted by {username}"}})
+    elif len(list(res2)) != 0:
+        print("hello")
+        comments.update_one({f"permalink": permalink},{"$set":{"timestamp":str(datetime.now()),"commentBody":f"deleted by {username}"}})
         print("comments deleted")
     else:
         print("error")

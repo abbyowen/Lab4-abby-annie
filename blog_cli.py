@@ -57,12 +57,16 @@ def read_input(input, db, posts, blogs, comments):
             time = words[5]
         comment(posts, comments, name, link, user, body, time)
         print("commenting")
-    elif words[0] == "delete":
+    elif words[0] == "delete" and (len(words) == 4 or len(words) == 5):
         # delete blogname permalink userName timestamp
+        if len(words) == 4:
+            timestamp = datetime.now()
+        elif len(words) == 5:
+            timestamp = words[4]
+        
         blogname = words[1]
         permalink = words[2]
         username = words[3]
-        timestamp = words[4]
         name_check = permalink.split('.')[0]
         if name_check != blogname:
             print("blog name and permalink do not match")

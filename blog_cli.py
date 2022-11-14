@@ -78,7 +78,11 @@ def read_input(input, db, posts, blogs, comments):
         name = words[1]
         print(f"in {name}:")
         show(blogs, posts, comments, name)
-        
+    elif words[0] == "search" and len(words) == 3:
+        print("searching")
+        blogname = words[1]
+        search_query = words[2]
+        search(blogs, posts, comments, blogname, search_query)
     else:
         print("unknown input or invalid number of arguments")
 

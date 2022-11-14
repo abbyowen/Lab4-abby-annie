@@ -34,7 +34,7 @@ def comment(posts, comments, name, permalink, user, commentBody, timestamp):
         else:
             print("permalink specified does not exist. please try again with an existing permalink to a comment or post.")
 
-def print_blog(blog):
+def print_post(blog):
     print("-----------------")
     title = blog["title"]
     user = blog["user"]
@@ -43,7 +43,7 @@ def print_blog(blog):
     body =  blog["postBody"]
     tags = blog["tags"]
     if tags == "":
-        string = f"title: {title} \n userName: {user} \n timestamp: {timestamp} \n permalink: {permalink} \n body: {body}"
+        string = f"title: {title}\nuserName: {user}\ntimestamp: {timestamp}\npermalink: {permalink}\nbody: {body}"
     else:
         string = f"title: {title}\nuserName: {user}\ntags: {tags}\ntimestamp: {timestamp}\npermalink: {permalink}\nbody: {body}"
 
@@ -76,8 +76,6 @@ def print_comments(comments, clist, depth):
                 single_comment_print(res, depth)
                 print_comments(comments, res["comments"], depth + 1)
 
-
-
 def show(blogs, posts, comments, name):
     post_permalinks = blogs.find({"blogName": name})
     for post in post_permalinks:
@@ -89,7 +87,7 @@ def show(blogs, posts, comments, name):
             
             body = posts.aggregate(pipeline)
             for res in body:
-                print_blog(res)
+                print_post(res)
                 clist = res["comments"]
                 print_comments(comments, clist, 1)
                 
@@ -108,6 +106,82 @@ def delete(posts, comments, permalink, username, timestamp):
         print("comments deleted")
     else:
         print("error")
+
+def single_comment_print_for_search(c, search_query, depth):
+    user = c["user"]
+    permalink = c["permalink"]
+    body = f"comment contents containing {search_query}"
+    padding = ""
+    for i in range(depth):
+        padding += "\t"
+    string = f"{padding}user: {user}\n{padding}permalink: {permalink}\n{padding}comment: {body}"
+    print("-----------------")
+    print(string)
+
+def print_post_for_search(post, search_query):
+    print("-----------------")
+    title = post["title"]
+    user = post["user"]
+    timestamp = str(post["timestamp"])
+    permalink = post["permalink"]
+    body = f"body contents containing {search_query}"
+    tags = post["tags"]
+    if tags == "":
+        string = f"title: {title}\nuserName: {user}\ntimestamp: {timestamp}\npermalink: {permalink}\nbody: {body}"
+    else:
+        string = f"title: {title}\nuserName: {user}\ntags: {tags}\ntimestamp: {timestamp}\npermalink: {permalink}\nbody: {body}"
+
+    print(string)
+
+def print_comments_for_search(comments, clist, search_query, depth):
+    if clist == []:
+        return
+    else:
+        for link in clist: 
+            pipeline = [
+                {"$match": {"permalink": link}}, 
+                {"$project": {"_id":0}}
+            ]
+            one_comment = comments.aggregate(pipeline)
+            
+            for res in one_comment:
+                if res["commentBody"] == search_query:
+                    single_comment_print_for_search(res, search_query, depth)
+                    print_comments_for_search(comments, res["comments"], search_query, depth + 1)
+                else:
+                    print_comments_for_search(comments, res["comments"], search_query, depth)
+
+def search(blogs, posts, comments, blogname, search_query):
+    post_permalinks = blogs.find({"blogName": blogname})
+    for post in post_permalinks:
+        for p in post["posts"]:
+            pipeline = [
+                {"$match": {"permalink": p}}, 
+                {"$project": {"_id":0}}
+            ]
+            
+            post = posts.aggregate(pipeline)
+            for res in post:
+                post_body = res["postBody"]
+    
+                tags = res["tags"]
+                found = False
+                if post_body == search_query:
+                    print_post_for_search(res, search_query)
+                    found = True
+                if tags == search_query:
+                    print_post_for_search(res, search_query)
+                    found = True
+                clist = res["comments"]
+                if found:
+                    print_comments_for_search(comments, clist, search_query, 1)
+                else:
+                    print_comments_for_search(comments, clist, search_query, 0)
+                found = False
+                
+
+
+
 
 
 

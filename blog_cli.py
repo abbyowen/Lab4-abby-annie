@@ -40,17 +40,24 @@ def read_input(input, db, posts, blogs, comments):
         title = words[3]
         body = words[4]
         tags = words[5]
+        
         if len(words) == 6:
             time = datetime.now()
-        elif len(words) == 6:
+        else:
             time = words[6]
         post(posts, blogs, name, user, title, body, tags, time)
         print("posting")
     elif words[0] == "comment" and (len(words) == 5 or len(words) == 6):
+        
+        
         name = words[1]
         link = words[2]
         user = words[3]
         body = words[4]
+        name_check = link.split('.')[0]
+        if name_check != name:
+            print("blog name and permalink do not match")
+            return
         if len(words) == 5:
             time = str(datetime.now())
         elif len(words) == 6:

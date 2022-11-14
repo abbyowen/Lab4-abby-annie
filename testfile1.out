@@ -1,0 +1,105 @@
+Hello, welcome to our blog!
+connection established
+New blog created!
+posting
+posting
+New blog created!
+posting
+showing
+in Art:
+-----------------
+title: Introduction to Art
+userName: Abby Owen
+tags: art, culture
+timestamp: 2022_11_11_15_04_41_149493
+permalink: Art.Introduction_to_Art
+body: This is the first post of my art blog where I will discuss art
+-----------------
+title: Van Goh
+userName: Annie Revers
+tags: artist
+timestamp: 2022_11_12_15_05_46_149493
+permalink: Art.Van_Goh
+body: This post is about Vincent Van Goh
+showing
+in Sports:
+-----------------
+title: Water Polo
+userName: Dylan Bienstock
+tags: sports
+timestamp: 2022_10_16_17_06_49_109403
+permalink: Sports.Water_Polo
+body: This post is about water polo
+commenting
+commenting
+blog name and permalink do not match
+permalink specified does not exist. please try again with an existing permalink to a comment or post.
+commenting
+showing
+in Art:
+-----------------
+title: Introduction to Art
+userName: Abby Owen
+tags: art, culture
+timestamp: 2022_11_11_15_04_41_149493
+permalink: Art.Introduction_to_Art
+body: This is the first post of my art blog where I will discuss art
+        -----------------
+        user: Bob Smith
+        permalink: Art.2022_11_12_15_04_41_149493
+        comment: I am excited to read about art!
+                -----------------
+                user: Jane Smith
+                permalink: Art.2022_11_13_15_05_46_149493
+                comment: Nice comment Bob!
+-----------------
+title: Van Goh
+userName: Annie Revers
+tags: artist
+timestamp: 2022_11_12_15_05_46_149493
+permalink: Art.Van_Goh
+body: This post is about Vincent Van Goh
+showing
+in Sports:
+-----------------
+title: Water Polo
+userName: Dylan Bienstock
+tags: sports
+timestamp: 2022_10_16_17_06_49_109403
+permalink: Sports.Water_Polo
+body: This post is about water polo
+post deleted
+deleting
+hello
+comments deleted
+deleting
+no post or comment with this permalink.
+deleting
+showing
+in Art:
+-----------------
+title: Introduction to Art
+userName: Abby Owen
+tags: art, culture
+timestamp: 2022_11_11_15_04_41_149493
+permalink: Art.Introduction_to_Art
+body: This is the first post of my art blog where I will discuss art
+        -----------------
+        user: Bob Smith
+        permalink: Art.2022_11_12_15_04_41_149493
+        comment: deleted by Sasha Rich
+                -----------------
+                user: Jane Smith
+                permalink: Art.2022_11_13_15_05_46_149493
+                comment: Nice comment Bob!
+-----------------
+title: Van Goh
+userName: Annie Revers
+tags: artist
+timestamp: 2022_11_12_16_05_46_149493
+permalink: Art.Van_Goh
+body: deleted by Annie Revers
+showing
+in BadBlog:
+no blog with supplied name
+goodbye!

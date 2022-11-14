@@ -90,7 +90,7 @@ def show(blogs, posts, comments, name):
                 
                 body = posts.aggregate(pipeline)
                 for res in body:
-                    print_blog(res)
+                    print_post(res)
                     clist = res["comments"]
                     print_comments(comments, clist, 1)
     else:
@@ -188,6 +188,11 @@ def search(blogs, posts, comments, blogname, search_query):
 
 
 
+def clear(posts, comments, blogs):
+    posts.delete_many({})
+    comments.delete_many({})
+    blogs.delete_many({})
+    print("databases clear!")
 
 
         

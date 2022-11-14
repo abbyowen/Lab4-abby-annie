@@ -1,0 +1,7 @@
+post Art "Annie Revers" "Test for search" "palmer" ""
+comment Art Art.Introduction_to_Art "Sasha Rich" "palmer"
+search Art "deleted by Sasha Rich"
+search Art "Nice comment Bob!"
+search Art "art, culture"
+search Sports "This post is about water polo"
+search Art "palmer"

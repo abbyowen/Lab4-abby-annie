@@ -90,6 +90,9 @@ def read_input(input, db, posts, blogs, comments):
         blogname = words[1]
         search_query = words[2]
         search(blogs, posts, comments, blogname, search_query)
+    elif words[0] == "clear" and len(words) == 1:
+        clear(posts, comments, blogs)
+        
     else:
         print("unknown input or invalid number of arguments")
 

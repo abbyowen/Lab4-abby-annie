@@ -44,14 +44,14 @@ tags: art, culture
 timestamp: 2022_11_11_15_04_41_149493
 permalink: Art.Introduction_to_Art
 body: This is the first post of my art blog where I will discuss art
-        -----------------
-        user: Bob Smith
-        permalink: Art.2022_11_12_15_04_41_149493
-        comment: I am excited to read about art!
-                -----------------
-                user: Jane Smith
-                permalink: Art.2022_11_13_15_05_46_149493
-                comment: Nice comment Bob!
+	-----------------
+	user: Bob Smith
+	permalink: Art.2022_11_12_15_04_41_149493
+	comment: I am excited to read about art!
+		-----------------
+		user: Jane Smith
+		permalink: Art.2022_11_13_15_05_46_149493
+		comment: Nice comment Bob!
 -----------------
 title: Van Goh
 userName: Annie Revers
@@ -84,14 +84,14 @@ tags: art, culture
 timestamp: 2022_11_11_15_04_41_149493
 permalink: Art.Introduction_to_Art
 body: This is the first post of my art blog where I will discuss art
-        -----------------
-        user: Bob Smith
-        permalink: Art.2022_11_12_15_04_41_149493
-        comment: deleted by Sasha Rich
-                -----------------
-                user: Jane Smith
-                permalink: Art.2022_11_13_15_05_46_149493
-                comment: Nice comment Bob!
+	-----------------
+	user: Bob Smith
+	permalink: Art.2022_11_12_15_04_41_149493
+	comment: deleted by Sasha Rich
+		-----------------
+		user: Jane Smith
+		permalink: Art.2022_11_13_15_05_46_149493
+		comment: Nice comment Bob!
 -----------------
 title: Van Goh
 userName: Annie Revers

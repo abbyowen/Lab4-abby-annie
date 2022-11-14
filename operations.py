@@ -114,6 +114,11 @@ def delete(posts, comments, permalink, username, timestamp):
     else:
         print("no post or comment with this permalink.")
 
+def clear(posts, comments, blogs):
+    posts.delete_many({})
+    comments.delete_many({})
+    blogs.delete_many({})
+    print("databases clear!")
 
 
         

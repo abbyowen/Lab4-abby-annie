@@ -85,6 +85,8 @@ def read_input(input, db, posts, blogs, comments):
         name = words[1]
         print(f"in {name}:")
         show(blogs, posts, comments, name)
+    elif words[0] == "clear" and len(words) == 1:
+        clear(posts, comments, blogs)
         
     else:
         print("unknown input or invalid number of arguments")
